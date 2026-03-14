@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about CineTrack and its features">
+    <title>About - CineTrack</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🎬 CineTrack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse.html">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="watchlist.html" onclick="return checkWatchlistAccess(event)">Watchlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item auth-nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- About Section -->
+        <section class="text-center mb-5">
+            <h1 class="section-title d-inline-block">ℹ️ About CineTrack</h1>
+            <p class="lead mt-4" style="max-width: 800px; margin: 0 auto; color: var(--text-secondary);">
+                Welcome to CineTrack! Your ultimate destination for discovering trending movies and TV series. 
+                We provide comprehensive information, ratings, and a personal watchlist to help you keep track 
+                of what you want to watch.
+            </p>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mb-5">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="text-primary-custom mb-3">Our Mission</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        CineTrack was created to solve the common problem of content overload. With countless 
+                        streaming platforms and new releases every week, it's easy to lose track of what you 
+                        want to watch. Our platform brings everything together in one place, making it simple 
+                        to discover, track, and organize your entertainment.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <i class="bi bi-lightbulb feature-icon"></i>
+                        <h4>Simplify Your Entertainment</h4>
+                        <p class="feature-description">
+                            No more forgetting about that movie your friend recommended or losing track of 
+                            new seasons of your favorite shows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mt-5 mb-5">
+            <h2 class="section-title">✨ Key Features</h2>
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-fire feature-icon"></i>
+                        <h4 class="feature-title">Trending Content</h4>
+                        <p class="feature-description">
+                            Stay up-to-date with what's trending right now in movies and TV shows.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-search feature-icon"></i>
+                        <h4 class="feature-title">Advanced Search</h4>
+                        <p class="feature-description">
+                            Find exactly what you're looking for with our powerful search functionality.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-bookmark-heart feature-icon"></i>
+                        <h4 class="feature-title">Personal Watchlist</h4>
+                        <p class="feature-description">
+                            Save movies and shows to your own watchlist. Each user has a separate watchlist tied to their account.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-person-check feature-icon"></i>
+                        <h4 class="feature-title">User Accounts</h4>
+                        <p class="feature-description">
+                            Register and login to get your own personal account. Your watchlist is saved privately under your account.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-star feature-icon"></i>
+                        <h4 class="feature-title">Ratings & Reviews</h4>
+                        <p class="feature-description">
+                            View TMDB ratings and comprehensive information before you watch.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-info-circle feature-icon"></i>
+                        <h4 class="feature-title">Detailed Information</h4>
+                        <p class="feature-description">
+                            Get complete details including cast, genres, and plot summaries.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="bi bi-phone feature-icon"></i>
+                        <h4 class="feature-title">Responsive Design</h4>
+                        <p class="feature-description">
+                            Access CineTrack seamlessly on any device - desktop, tablet, or mobile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="mb-5">
+            <h2 class="section-title">❓ How to Use CineTrack</h2>
+            <div class="row mt-4">
+                <div class="col-md-2 text-center mb-4">
+                    <div class="feature-icon mb-3">1</div>
+                    <h5>Register</h5>
+                    <p style="color: var(--text-secondary);">
+                        Create a free account using your username and email
+                    </p>
+                </div>
+                <div class="col-md-2 text-center mb-4">
+                    <div class="feature-icon mb-3">2</div>
+                    <h5>Login</h5>
+                    <p style="color: var(--text-secondary);">
+                        Sign in to access your personal watchlist and features
+                    </p>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <div class="feature-icon mb-3">3</div>
+                    <h5>Browse & Search</h5>
+                    <p style="color: var(--text-secondary);">
+                        Explore trending, top-rated content or search for anything specific
+                    </p>
+                </div>
+                <div class="col-md-2 text-center mb-4">
+                    <div class="feature-icon mb-3">4</div>
+                    <h5>Add to Watchlist</h5>
+                    <p style="color: var(--text-secondary);">
+                        Click the + button on any movie or TV show to save it
+                    </p>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <div class="feature-icon mb-3">5</div>
+                    <h5>Manage</h5>
+                    <p style="color: var(--text-secondary);">
+                        View, filter and manage your saved items from the Watchlist page
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section class="mb-5">
+            <h2 class="section-title">🛠️ Built With</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-code-square text-primary-custom"></i> Frontend Technologies</h5>
+                        <ul class="text-start" style="color: var(--text-secondary);">
+                            <li>HTML5 for semantic structure</li>
+                            <li>CSS3 for custom styling and animations</li>
+                            <li>Bootstrap 5 for responsive design</li>
+                            <li>JavaScript ES6+ for interactivity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-database text-primary-custom"></i> Data & Storage</h5>
+                        <ul class="text-start" style="color: var(--text-secondary);">
+                            <li>TMDB API for movie/TV show data</li>
+                            <li>Local Storage for user accounts &amp; watchlists</li>
+                            <li>Per-user watchlist storage system</li>
+                            <li>RESTful API integration</li>
+                            <li>Asynchronous data fetching</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Info -->
+        <section class="text-center mb-5 p-4" style="background-color: var(--light-bg); border-radius: 10px;">
+            <h3 class="text-primary-custom mb-3">University Project</h3>
+            <p style="color: var(--text-secondary);">
+                This project was created as part of the ICT 2204 - Web Design and Technologies course at 
+                Rajarata University of Sri Lanka, Department of Computing. It demonstrates proficiency in modern web 
+                development technologies including HTML5, CSS3, Bootstrap 5, JavaScript, TMDB API integration, 
+                user authentication with session management, and per-user data storage.
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About CineTrack</h4>
+                    <p>Your ultimate destination for discovering movies and TV series.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse</a></li>
+                        <li><a href="watchlist.html">Watchlist</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CineTrack | Powered by TMDB API | University Project - ICT 2204</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Auth JS -->
+    <script src="js/auth.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

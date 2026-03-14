@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CineTrack - Discover trending movies and TV series with detailed information, ratings, and personal watchlist">
+    <title>CineTrack - Movie & TV Series Discovery</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🎬 CineTrack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse.html">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="watchlist.html" onclick="return checkWatchlistAccess(event)">Watchlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item auth-nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Featured Carousel -->
+    <div id="featuredCarousel" class="carousel slide hero-section" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators" id="carouselIndicators">
+            <!-- Dynamically generated -->
+        </div>
+        <div class="carousel-inner" id="carouselInner">
+            <!-- Skeleton loader while TMDB images load -->
+            <div class="carousel-item active">
+                <div class="carousel-skeleton">
+                    <div class="skeleton-shimmer"></div>
+                </div>
+                <div class="carousel-caption">
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="switchCategory('movie')">Movies</button>
+            <button class="tab-btn" onclick="switchCategory('tv')">TV Series</button>
+        </div>
+
+        <!-- Trending Section -->
+        <section id="trending-section">
+            <h2 class="section-title">🔥 Trending Now</h2>
+            <div id="loading-trending" class="loading">
+                <div class="spinner"></div>
+                <p>Loading trending content...</p>
+            </div>
+            <div class="row" id="trending-container"></div>
+        </section>
+
+        <!-- Top Rated Section -->
+        <section id="top-rated-section" class="mt-5">
+            <h2 class="section-title">⭐ Top Rated</h2>
+            <div id="loading-top-rated" class="loading">
+                <div class="spinner"></div>
+                <p>Loading top rated content...</p>
+            </div>
+            <div class="row" id="top-rated-container"></div>
+        </section>
+    </div>
+
+    <!-- Movie Details Modal -->
+    <div class="modal fade" id="movieModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Movie Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="movieModalBody">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About CineTrack</h4>
+                    <p>Your ultimate destination for discovering movies and TV series.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse</a></li>
+                        <li><a href="watchlist.html">Watchlist</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CineTrack | Powered by TMDB API | University Project - ICT 2204</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Auth JS -->
+    <script src="js/auth.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+    <!-- Home Page Specific JS -->
+    <script src="js/home.js"></script>
+</body>
+</html>

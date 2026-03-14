@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a CineTrack account">
+    <title>Register - CineTrack</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .auth-page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .auth-logo a {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .auth-logo p {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .auth-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .auth-card .form-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .auth-card .form-control {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .auth-card .form-control:focus {
+            background: var(--light-bg);
+            border-color: var(--primary-color);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+        }
+
+        .auth-card .form-control::placeholder { color: #555; }
+        .auth-card .form-control.is-invalid { border-color: #dc3545; }
+        .auth-card .form-control.is-valid { border-color: #28a745; }
+
+        .auth-submit-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 0.5rem;
+        }
+
+        .auth-submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .auth-divider {
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 1.2rem 0;
+            position: relative;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .auth-divider::before { left: 0; }
+        .auth-divider::after { right: 0; }
+
+        .auth-footer-link {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .auth-footer-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer-link a:hover { text-decoration: underline; }
+
+        .input-icon-wrap {
+            position: relative;
+        }
+
+        .input-icon-wrap > .bi {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .input-icon-wrap .form-control {
+            padding-left: 2.5rem;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            z-index: 5;
+        }
+
+        .password-toggle:hover { color: var(--primary-color); }
+
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 6px;
+            transition: all 0.3s;
+        }
+
+        .strength-text {
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 1.2rem;
+        }
+
+        .back-home a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-home a:hover { color: var(--primary-color); }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🎬 CineTrack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="browse.html">Browse</a></li>
+                    <li class="nav-item"><a class="nav-link" href="watchlist.html" onclick="return checkWatchlistAccess(event)">Watchlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item auth-nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Page -->
+    <div class="auth-page-wrapper">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <a href="index.html">🎬 CineTrack</a>
+                <p>Join CineTrack and start tracking your favorites</p>
+            </div>
+
+            <h2 class="auth-title">Create Account</h2>
+
+            <!-- Alert container -->
+            <div id="auth-alert" style="display: none;"></div>
+
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="mb-3">
+                    <label for="regUsername" class="form-label">Username</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-person"></i>
+                        <input type="text"
+                               class="form-control"
+                               id="regUsername"
+                               placeholder="Choose a username"
+                               required
+                               minlength="3"
+                               maxlength="30">
+                        <div class="invalid-feedback">Username must be at least 3 characters</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regEmail" class="form-label">Email Address</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-envelope"></i>
+                        <input type="email"
+                               class="form-control"
+                               id="regEmail"
+                               placeholder="your.email@example.com"
+                               required>
+                        <div class="invalid-feedback">Please enter a valid email address</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regPassword" class="form-label">Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-lock"></i>
+                        <input type="password"
+                               class="form-control"
+                               id="regPassword"
+                               placeholder="Create a strong password"
+                               style="padding-right: 3rem;"
+                               required
+                               minlength="6"
+                               oninput="updatePasswordStrength(this.value)">
+                        <button type="button"
+                                class="password-toggle"
+                                onclick="togglePasswordVisibility('regPassword', this)"
+                                title="Show password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Password must be at least 6 characters</div>
+                    <div id="password-strength-bar" class="password-strength bg-secondary" style="width: 0%;"></div>
+                    <div id="password-strength-text" class="strength-text" style="color: var(--text-secondary);"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regConfirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-lock-fill"></i>
+                        <input type="password"
+                               class="form-control"
+                               id="regConfirmPassword"
+                               placeholder="Re-enter your password"
+                               required>
+                        <div class="invalid-feedback">Passwords do not match</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-submit-btn" id="registerBtn">
+                    <i class="bi bi-person-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <div class="auth-footer-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </div>
+
+            <div class="back-home">
+                <a href="index.html"><i class="bi bi-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Redirect if already logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            if (getCurrentUser()) {
+                window.location.href = 'index.html';
+            }
+        });
+
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            let valid = true;
+
+            // Username validation
+            const usernameEl = document.getElementById('regUsername');
+            if (!username || username.length < 3) {
+                usernameEl.classList.add('is-invalid');
+                valid = false;
+            } else {
+                usernameEl.classList.remove('is-invalid');
+            }
+
+            // Email validation
+            const emailEl = document.getElementById('regEmail');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                emailEl.classList.add('is-invalid');
+                valid = false;
+            } else {
+                emailEl.classList.remove('is-invalid');
+            }
+
+            // Password validation
+            const passwordEl = document.getElementById('regPassword');
+            if (!password || password.length < 6) {
+                passwordEl.classList.add('is-invalid');
+                valid = false;
+            } else {
+                passwordEl.classList.remove('is-invalid');
+            }
+
+            // Confirm password
+            const confirmEl = document.getElementById('regConfirmPassword');
+            if (password !== confirmPassword) {
+                confirmEl.classList.add('is-invalid');
+                valid = false;
+            } else {
+                confirmEl.classList.remove('is-invalid');
+            }
+
+            if (!valid) return false;
+
+            const result = registerUser(username, email, password);
+
+            if (result.success) {
+                setSession(result.user);
+                showAuthAlert('Account created! Welcome to CineTrack! 🎬', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1200);
+            } else {
+                showAuthAlert(result.message, 'danger');
+            }
+
+            return false;
+        }
+
+        function updatePasswordStrength(password) {
+            const bar = document.getElementById('password-strength-bar');
+            const text = document.getElementById('password-strength-text');
+
+            let strength = 0;
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            const levels = [
+                { width: '0%', color: 'bg-secondary', label: '' },
+                { width: '25%', color: 'bg-danger', label: '😟 Weak' },
+                { width: '50%', color: 'bg-warning', label: '😐 Fair' },
+                { width: '75%', color: 'bg-info', label: '😊 Good' },
+                { width: '100%', color: 'bg-success', label: '💪 Strong' },
+                { width: '100%', color: 'bg-success', label: '🔒 Very Strong' }
+            ];
+
+            const level = levels[Math.min(strength, 5)];
+            bar.style.width = level.width;
+            bar.className = `password-strength ${level.color}`;
+            text.textContent = level.label;
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+                btn.setAttribute('title', 'Hide password');
+            } else {
+                input.type = 'password';
+                icon.className = 'bi bi-eye';
+                btn.setAttribute('title', 'Show password');
+            }
+        }
+
+        function showAuthAlert(message, type) {
+            const alertEl = document.getElementById('auth-alert');
+            alertEl.style.display = 'block';
+            alertEl.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible" role="alert" style="border-radius: 8px;">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>`;
+        }
+    </script>
+</body>
+</html>
