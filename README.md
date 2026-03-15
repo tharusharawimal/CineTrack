@@ -56,7 +56,7 @@ C:/wamp64/www/cinetrack
 6. Click on the `cinetrack` database
 7. Click the **Import** tab at the top
 8. Click **Choose File** and select `database.sql` from your project folder
-9. Click **Go** — the tables will be created automatically
+9. Click **Import** — the tables will be created automatically
 
 ### Step 4 — Run the Project
 1. Open your browser and go to:
