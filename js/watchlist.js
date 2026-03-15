@@ -106,6 +106,7 @@ function clearAllWatchlist() {
     if (confirm('Are you sure you want to remove everything from your watchlist?')) {
         watchlist = [];
         saveWatchlist();
+        syncWatchlistToDB('clear', null);
         displayWatchlist();
         showAlert('Watchlist cleared!', 'success');
     }
