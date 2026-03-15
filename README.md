@@ -42,7 +42,7 @@ const API_KEY = 'your_api_key_here';
 ### Step 2 — Place Project Files
 1. Copy your entire `cinetrack` project folder into:
 ```
-C:/wamp64/www
+C:/wamp64/www/cinetrack
 ```
 
 ### Step 3 — Import the Database
