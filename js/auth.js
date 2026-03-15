@@ -34,10 +34,7 @@ function safeShowAlert(message, type) {
 
 function logout() {
     localStorage.removeItem('cinetrack_session');
-    safeShowAlert('Logged out successfully!', 'info');
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 1000);
+    window.location.href = 'auth/logout.php';
 }
 
 // Render Auth Navbar Item 
@@ -59,6 +56,11 @@ function renderAuthNav() {
                         ${escapeHtml(user.username)}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end auth-dropdown">
+                        <li>
+                            <a class="dropdown-item auth-dropdown-item" href="dashboard.php">
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item auth-dropdown-item" href="watchlist.html">
                                 <i class="bi bi-bookmark-heart"></i> My Watchlist
@@ -140,8 +142,6 @@ function loginUser(emailOrUsername, password) {
         return { success: false, message: 'Invalid username/email or password.' };
     }
 }
-
-// Protect pages that require login 
 
 // Helper
 function escapeHtml(str) {

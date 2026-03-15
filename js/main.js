@@ -55,6 +55,24 @@ function saveWatchlist() {
     localStorage.setItem(getStorageKey(), JSON.stringify(watchlist));
 }
 
+// Save to database if PHP is available
+async function syncWatchlistToDB(action, item) {
+    try {
+        var formData = new FormData();
+        formData.append('action', action);
+        if (item) {
+            formData.append('movie_id', item.id);
+            formData.append('media_type', item.media_type);
+            formData.append('title', item.title);
+            formData.append('poster', item.poster || '');
+            formData.append('rating', item.rating || 0);
+        }
+        await fetch('watchlist_api.php', { method: 'POST', body: formData });
+    } catch (e) {
+        // Silently fail - localStorage is the fallback
+    }
+}
+
 function addToWatchlist(item) {
     // Require login before adding
     if (typeof getCurrentUser === 'function' && !getCurrentUser()) {
@@ -72,6 +90,7 @@ function addToWatchlist(item) {
     
     watchlist.push(item);
     saveWatchlist();
+    syncWatchlistToDB('add', item);
     showAlert('Added to watchlist!', 'success');
     updateWatchlistButtons();
 }
@@ -79,6 +98,7 @@ function addToWatchlist(item) {
 function removeFromWatchlist(id, mediaType) {
     watchlist = watchlist.filter(item => !(item.id === id && item.media_type === mediaType));
     saveWatchlist();
+    syncWatchlistToDB('remove', { id: id, media_type: mediaType });
     showAlert('Removed from watchlist', 'info');
     updateWatchlistButtons();
 }
