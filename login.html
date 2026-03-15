@@ -303,7 +303,7 @@
             }
         });
 
-        function handleLogin(event) {
+        async function handleLogin(event) {
             event.preventDefault();
 
             const identifier = document.getElementById('loginIdentifier').value.trim();
@@ -328,22 +328,30 @@
 
             if (!valid) return false;
 
-            // Attempt login
-            const result = loginUser(identifier, password);
+            // Submit to PHP backend
+            const formData = new FormData();
+            formData.append('email_or_username', identifier);
+            formData.append('password', password);
 
-            if (result.success) {
-                setSession(result.user);
-                showAuthAlert('Login successful! Redirecting...', 'success');
+            try {
+                const response = await fetch('auth/login.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
 
-                // Check if there's a redirect target
-                const params = new URLSearchParams(window.location.search);
-                const redirect = params.get('redirect') || 'index.html';
-
-                setTimeout(() => {
-                    window.location.href = redirect;
-                }, 1000);
-            } else {
-                showAuthAlert(result.message, 'danger');
+                if (result.success) {
+                    // Also save to localStorage for JS auth compatibility
+                    localStorage.setItem('cinetrack_session', JSON.stringify(result.user));
+                    showAuthAlert('Login successful! Redirecting...', 'success');
+                    const params = new URLSearchParams(window.location.search);
+                    const redirect = params.get('redirect') || 'index.php';
+                    setTimeout(() => { window.location.href = redirect; }, 1000);
+                } else {
+                    showAuthAlert(result.message, 'danger');
+                }
+            } catch (err) {
+                showAuthAlert('Connection error. Please try again.', 'danger');
             }
 
             return false;
