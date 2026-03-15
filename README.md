@@ -46,16 +46,17 @@ C:/wamp64/www/cinetrack
 ```
 
 ### Step 3 — Import the Database
-1. Open your browser and go to: `http://localhost/phpmyadmin`
-2. When logging into phpMyAdmin, use the following default WAMP credentials:
+1. **Left click** the green WAMP icon in the taskbar
+2. Click **Database management** → **phpMyAdmin**
+3. When logging into phpMyAdmin, use the following default WAMP credentials:
 	- Username: root
 	- Password: (leave empty, no password)
-3. Click **New** on the left sidebar
-4. Type `cinetrack` as the database name and click **Create**
-5. Click on the `cinetrack` database
-6. Click the **Import** tab at the top
-7. Click **Choose File** and select `database.sql` from your project folder
-8. Click **Go** — the tables will be created automatically
+4. Click **New** on the left sidebar
+5. Type `cinetrack` as the database name and click **Create**
+6. Click on the `cinetrack` database
+7. Click the **Import** tab at the top
+8. Click **Choose File** and select `database.sql` from your project folder
+9. Click **Go** — the tables will be created automatically
 
 ### Step 4 — Run the Project
 1. Open your browser and go to:
