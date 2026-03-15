@@ -1,44 +1,57 @@
 // Contact Page Specific JavaScript
 
-function handleContactForm(event) {
+async function handleContactForm(event) {
     event.preventDefault();
 
     if (!validateContactForm()) {
         return false;
     }
 
-    // Build message object
-    var message = {
-        id: Date.now(),
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        subject: document.getElementById('subject').value.trim(),
-        message: document.getElementById('message').value.trim(),
-        created_at: new Date().toLocaleString()
-    };
+    var formData = new FormData();
+    formData.append('name', document.getElementById('name').value.trim());
+    formData.append('email', document.getElementById('email').value.trim());
+    formData.append('subject', document.getElementById('subject').value.trim());
+    formData.append('message', document.getElementById('message').value.trim());
 
-    // Save to localStorage
-    saveMessage(message);
+    try {
+        var response = await fetch('contact.php', {
+            method: 'POST',
+            body: formData
+        });
+        var result = await response.json();
 
-    // Show success modal
-    showSuccessModal();
-
-    // Reset form
-    document.getElementById('contactForm').reset();
-    document.querySelectorAll('.is-invalid').forEach(function(el) {
-        el.classList.remove('is-invalid');
-    });
+        if (result.success) {
+            showSuccessModal();
+            document.getElementById('contactForm').reset();
+            document.querySelectorAll('.is-invalid').forEach(function(el) {
+                el.classList.remove('is-invalid');
+            });
+        } else {
+            showAlert(result.message, 'danger');
+        }
+    } catch (err) {
+        // Fallback to localStorage if PHP not available
+        saveMessage({
+            id: Date.now(),
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            subject: document.getElementById('subject').value.trim(),
+            message: document.getElementById('message').value.trim(),
+            created_at: new Date().toLocaleString()
+        });
+        showSuccessModal();
+        document.getElementById('contactForm').reset();
+    }
 
     return false;
 }
 
-// Save message to localStorage 
+// Fallback: Save message to localStorage
 function saveMessage(message) {
     var existing = localStorage.getItem('cinetrack_messages');
     var messages = existing ? JSON.parse(existing) : [];
     messages.push(message);
     localStorage.setItem('cinetrack_messages', JSON.stringify(messages));
-    console.log('Message saved! Total messages:', messages.length);
 }
 
 // Get all saved messages 
